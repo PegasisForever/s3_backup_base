@@ -10,7 +10,7 @@ backup_name_list = os.getenv('BACKUP_LIST').split(',')
 jobs = {}
 job_index = 0
 for backup_name in backup_name_list:
-    time, keep_count = job.split("|")
+    time, keep_count = os.getenv(f'BACKUP_{backup_name}').split("|")
     job_name = f'backup_{backup_name}'
     jobs[job_name] = {
         'cmd': f'{pre_script} && /root/backup.py {keep_count} {job_name} && {post_script}',
