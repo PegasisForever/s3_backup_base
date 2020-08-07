@@ -14,4 +14,4 @@ RUN rm /home/jobberuser/.jobber && \
     touch /root/empty-script && \
     chmod +x /root/empty-script /root/init.py /root/backup.py
 
-CMD [ "sh","-c","python3 /root/init.py && /usr/libexec/jobberrunner -u /var/jobber/0/cmd.sock /root/.jobber"]
+CMD [ "sh","-c","/root/init.py && /usr/libexec/jobberrunner -u /var/jobber/0/cmd.sock /root/.jobber"]
