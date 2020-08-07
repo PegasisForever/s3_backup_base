@@ -5,6 +5,7 @@ import yaml
 
 pre_script = os.getenv('PRE_SCRIPT') or '/root/empty-script'
 post_script = os.getenv('POST_SCRIPT') or '/root/empty-script'
+init_script = os.getenv('INIT_SCRIPT') or '/root/empty-script'
 backup_name_list = os.getenv('BACKUP_LIST').split(',')
 
 jobs = {}
@@ -39,3 +40,5 @@ jobber_file = {
 with open('/root/.jobber', 'w') as file:
     yaml.dump(jobber_file, file)
 os.chmod('/root/.jobber', 0o600)
+
+os.system(init_script)

@@ -8,6 +8,7 @@ docker pull pegasis0/s3_backup_base:latest
 
 - PRE_SCRIPT="/root/empty-script"
 - POST_SCRIPT="/root/empty-script"
+- INIT_SCRIPT="/root/empty-script" (Do not name your init script init.py as it is used by this image)
 - BACKUP_LIST="daily,weekly"
 - BACKUP_daily="* * *|10"
 - BACKUP_weekly="* * *|4"
