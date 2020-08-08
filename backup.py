@@ -20,7 +20,8 @@ access_key = os.getenv('ACCESS_KEY')
 bucket = os.getenv('BUCKET')
 backup_local_file_path = os.getenv('BACKUP_FILE')
 backup_local_file_name = backup_local_file_path.split('/')[-1]
-backup_s3_directory = ensure_trailing_slash(os.getenv('BACKUP_S3_DIR'))+sys.argv[2]+'/'
+backup_s3_directory = ensure_trailing_slash(
+    os.getenv('BACKUP_S3_DIR'))+sys.argv[2]+'/'
 keep_count = int(sys.argv[1])
 region_name = os.getenv('REGION_NAME')
 endpoint_url = os.getenv('ENDPOINT_URL')
@@ -39,7 +40,13 @@ def get_backup_list():
         Prefix=backup_s3_directory,
         Delimiter='/'
     )
-    return sorted(list(map(lambda item: datetime.strptime(item['Prefix'].split('/')[-2], time_format), response['CommonPrefixes'])))
+    return sorted(list(map(
+        lambda item: datetime.strptime(
+            item['Prefix'].split('/')[-2],
+            time_format
+        ),
+        response['CommonPrefixes']
+    )))
 
 
 def backup():

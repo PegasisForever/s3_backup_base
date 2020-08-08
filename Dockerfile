@@ -4,8 +4,10 @@ USER root
 ENV USERID=0
 WORKDIR /root
 
-RUN apk add python3 py3-pip && \
+RUN apk add python3 py3-pip tzdata && \
     pip3 install pyyaml boto3
+
+ENV TZ=America/Toronto
 
 COPY init.py backup.py /root/
 
