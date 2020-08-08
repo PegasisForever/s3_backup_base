@@ -14,7 +14,7 @@ for backup_name in backup_name_list:
     time, keep_count = os.getenv(f'BACKUP_{backup_name}').split("|")
     job_name = f'backup_{backup_name}'
     jobs[job_name] = {
-        'cmd': f'{pre_script} && /root/backup.py {keep_count} {job_name} && {post_script}',
+        'cmd': f'nice {pre_script} && nice /root/backup.py {keep_count} {job_name} && nice {post_script}',
         'time': time,
         'onError': 'Continue',
         'notifyOnSuccess': [
